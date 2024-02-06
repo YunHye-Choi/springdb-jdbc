@@ -17,9 +17,10 @@ public class MemberRepositoryV0 {
                 values (?, ?);
                 """;
 
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
 
+        try (conn; pstmt) {
             pstmt.setString(1, member.getMemberId());
             pstmt.setInt(2, member.getMoney());
             pstmt.executeUpdate();
