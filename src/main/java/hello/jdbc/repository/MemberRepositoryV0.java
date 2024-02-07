@@ -33,7 +33,7 @@ public class MemberRepositoryV0 {
         }
     }
 
-    public Member finaById(String memberId) throws SQLException {
+    public Member findById(String memberId) throws SQLException {
         String sql = """
                 SELECT * FROM MEMBER
                 WHERE MEMBER_ID = ?
@@ -74,6 +74,22 @@ public class MemberRepositoryV0 {
             pstmt.setString(2, memberId);
             int resultSize = pstmt.executeUpdate();
             log.info("resultSize={}", resultSize);
+        } catch (SQLException e) {
+            log.error("db error", e);
+            throw e;
+        }
+    }
+
+    public void delete(String memberId) throws SQLException {
+        String sql = """
+                delete from member
+                where member_id = ?
+                """;
+        Connection conn = getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        try (conn; pstmt) {
+            pstmt.setString(1, memberId);
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             log.error("db error", e);
             throw e;
