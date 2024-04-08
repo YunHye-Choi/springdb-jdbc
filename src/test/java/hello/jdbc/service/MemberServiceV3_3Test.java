@@ -25,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * 트랜잭션 - 커넥션 파라미터 전달 하여 커넥션 동기화
+ * 트랜잭션 - @Transactional AOP
  */
 @Slf4j
 @SpringBootTest
