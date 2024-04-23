@@ -33,6 +33,7 @@ public class MemberServiceV3_3 {
         memberRepository.update(toId, toMember.getMoney() + money);
     }
 
+
     private static void validation(Member toMember) {
         if (toMember.getMemberId().equals("ex")) {
             throw new IllegalStateException();
